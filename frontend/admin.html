@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Admin Dashboard - MovieMate</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="js/admin.js" defer></script>
+</head>
+<body>
+  <header>
+    <h1>Admin Dashboard</h1>
+  </header>
+  <main class="admin-panel">
+    <section>
+      <h2>Manage Movies</h2>
+      <button id="addMovieBtn">Add Movie (form below)</button>
+      <div class="admin-movie-list" id="adminMovieList"></div>
+      <div id="addMovieForm" style="display:none">
+        <input id="mTitle" placeholder="Title" /><br/>
+        <textarea id="mDesc" placeholder="Description"></textarea><br/>
+        <input id="mYear" placeholder="Release Year" /><br/>
+        <input id="mGenre" placeholder="Genre ID" /><br/>
+        <button id="saveMovie">Save</button>
+      </div>
+    </section>
+    <section>
+      <h2>Manage Users</h2>
+      <div class="admin-user-list" id="adminUserList"></div>
+    </section>
+  </main>
+</body>
+</html>

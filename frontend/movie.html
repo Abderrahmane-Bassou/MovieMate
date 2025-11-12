@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Movie Details - MovieMate</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="js/movie.js" defer></script>
+</head>
+<body>
+  <header>
+    <nav class="navbar">
+      <a href="index.html">← Back</a>
+      <h1>Movie Details</h1>
+    </nav>
+  </header>
+  <main class="movie-details">
+    <div class="movie-info">
+      <h2 id="movieTitle">Loading...</h2>
+      <p id="movieGenre"></p>
+      <p id="movieDesc"></p>
+      <p><strong>Average rating:</strong> <span id="movieAvg">-</span></p>
+    </div>
+    <div class="reviews">
+      <h3>Reviews</h3>
+      <div id="reviewList"></div>
+      <textarea id="reviewText" placeholder="Write your review..."></textarea>
+      <button id="submitReview">Submit Review</button>
+      <div>
+        <label>Your rating:
+          <select id="ratingSelect">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3" selected>3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+          </select>
+        </label>
+        <button id="submitRating">Submit Rating</button>
+      </div>
+    </div>
+  </main>
+</body>
+</html>
