@@ -4,18 +4,54 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Profile - MovieMate</title>
-  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="CSS/style.css" />
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script src="js/main.js" defer></script>
+  <script src="javascript/nav.js" defer></script>
+  <script>
+    function getUserData() {
+      const userData = localStorage.getItem('userData');
+      return userData ? JSON.parse(userData) : null;
+    }
+
+    function token() {
+      return localStorage.getItem('token');
+    }
+
+    $(document).ready(function() {
+      // Check if user is logged in
+      if (!token()) {
+        window.location.href = 'index.html';
+        return;
+      }
+
+      const user = getUserData();
+      if (user) {
+        $('#pfUsername').text(user.username);
+        $('#pfEmail').text(user.email || '-');
+      }
+    });
+  </script>
 </head>
 <body>
-  <div class="profile-container">
-    <h2>User Profile</h2>
-    <p><strong>Username:</strong> <span id="pfUsername">-</span></p>
-    <p><strong>Email:</strong> <span id="pfEmail">-</span></p>
-    <button id="logoutBtn">Logout</button>
-    <h3>Your Reviews</h3>
-    <div id="userReviews"></div>
-  </div>
+  <header>
+    <nav class="navbar">
+      <h1 class="logo">MovieMate</h1>
+      <ul class="nav-links" id="navLinks">
+        <!-- Navigation will be populated by nav.js -->
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <div class="profile-container">
+      <h2>User Profile</h2>
+      <p><strong>Username:</strong> <span id="pfUsername">-</span></p>
+      <p><strong>Email:</strong> <span id="pfEmail">-</span></p>
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 MovieMate</p>
+  </footer>
 </body>
 </html>

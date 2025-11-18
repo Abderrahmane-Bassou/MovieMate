@@ -24,6 +24,11 @@ async function editReview(req, res, next) {
     const review_id = req.params.id;
     const user_id = req.user.user_id;
     const { review_text } = req.body;
+
+    if (!review_text) {
+      return res.status(400).json({ message: 'Review text is required' });
+    }
+
     await reviewModel.updateReview(review_id, user_id, review_text);
     res.json({ message: 'Updated' });
   } catch (err) { next(err); }

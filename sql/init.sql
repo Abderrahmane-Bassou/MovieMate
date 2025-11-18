@@ -43,7 +43,7 @@ CREATE TABLE IF NOT EXISTS Ratings (
     rating_id INT AUTO_INCREMENT PRIMARY KEY,
     user_id INT NOT NULL,
     movie_id INT NOT NULL,
-    rating_value INT,
+    rating_value INT CHECK (rating_value BETWEEN 1 AND 5),
     rated_at DATETIME DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (user_id) REFERENCES Users(user_id)
       ON DELETE CASCADE ON UPDATE CASCADE,
@@ -52,10 +52,11 @@ CREATE TABLE IF NOT EXISTS Ratings (
     UNIQUE (user_id, movie_id)
 );
 
+-- Default passwords: admin123 for admin, user123 for regular user
 INSERT INTO Users (username, email, password_hash, user_role)
-VALUES 
-('AdminUser', 'admin@moviemate.com', 'hashed_password_admin', 'ADMIN'),
-('JohnDoe', 'john@example.com', 'hashed_password_john', 'REGULAR');
+VALUES
+('AdminUser', 'admin@moviemate.com', '$2b$10$izS7xQcwMfl3/paM0IRiSuIiw3xYE5uU.F5rH977nlPsOUqRFCbMC', 'ADMIN'),
+('JohnDoe', 'john@example.com', '$2b$10$9VGuuVFXC0ib5ZB5WzbTlem1BRAOZqAKq/1XLSdq4tt4x/QQecuwC', 'REGULAR');
 
 INSERT INTO Genres (genre_name)
 VALUES ('Action'), ('Comedy'), ('Drama'), ('Sci-Fi'), ('Horror');

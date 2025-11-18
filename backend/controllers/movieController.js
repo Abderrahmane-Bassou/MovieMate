@@ -18,7 +18,14 @@ async function getMovie(req, res, next) {
 
 async function createMovie(req, res, next) {
   try {
-    const payload = req.body;
+    const { title, description, release_year, genre_id } = req.body;
+
+    // Validation
+    if (!title || !description || !release_year) {
+      return res.status(400).json({ message: 'Missing required fields: title, description, release_year' });
+    }
+
+    const payload = { title, description, release_year, genre_id };
     const result = await movieModel.createMovie(payload);
     res.status(201).json({ message: 'Created', id: result.insertId });
   } catch (err) { next(err); }
@@ -27,7 +34,14 @@ async function createMovie(req, res, next) {
 async function updateMovie(req, res, next) {
   try {
     const id = req.params.id;
-    await movieModel.updateMovie(id, req.body);
+    const { title, description, release_year, genre_id } = req.body;
+
+    // Validation
+    if (!title || !description || !release_year) {
+      return res.status(400).json({ message: 'Missing required fields: title, description, release_year' });
+    }
+
+    await movieModel.updateMovie(id, { title, description, release_year, genre_id });
     res.json({ message: 'Updated' });
   } catch (err) { next(err); }
 }
